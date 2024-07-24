@@ -23,16 +23,25 @@ public class Ticket {
     @Column(name = "body", length = 800, nullable = false)
     private String body;
 
-    @Column(name = "note", length = 400)
-    private String note;
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
     // -----------------------------------
     // -------- GETTERS & SETTERS --------
     // -----------------------------------
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public Integer getId() {
         return id;
@@ -56,14 +65,6 @@ public class Ticket {
 
     public void setBody(String body) {
         this.body = body;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 
     public User getUser() {

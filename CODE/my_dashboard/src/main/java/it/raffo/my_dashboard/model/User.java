@@ -27,10 +27,10 @@ public class User {
     @Column(name = "username", length = 30, nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password", length = 10, nullable = false, unique = true)
+    @Column(name = "password", length = 30, nullable = false, unique = false)
     private String password;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", columnDefinition = "TINYINT(1)", nullable = false)
     private boolean status;
     // 0 = busy
     // 1 = available
