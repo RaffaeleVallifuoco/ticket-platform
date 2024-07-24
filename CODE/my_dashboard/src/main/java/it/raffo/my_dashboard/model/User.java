@@ -35,10 +35,6 @@ public class User {
     // 0 = busy
     // 1 = available
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
@@ -84,14 +80,6 @@ public class User {
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
 }
