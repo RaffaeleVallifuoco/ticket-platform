@@ -66,12 +66,16 @@
                 </div>
 
                 <!-- RIGHT COL -->
-                 <div class="col-4 text-start">
-                    <h4 class="p-5">Note :</h4>
+                 <div class="p-3 col-4 text-start">
+                    <h4 class="py-4">Note :</h4>
                     <div class="card opacity-50">
-                        <div class="card-body">
+                        <div class="card-body" th:each="note: ${ticket.note}">
                             <ul>
-                                <li th:each="note: ${ticket.note}" th:text="${note.name}"></li>
+                                <li class="d-flex justify-content-between fs-6">
+                                    <span th:text="${note.author.username}"></span>
+                                    <span th:text="${note.note_date}"></span>
+                                </li>
+                                <li th:text="${note.name}"></li>
                             </ul>
                         </div>
                     </div>

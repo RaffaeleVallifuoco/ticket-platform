@@ -29,9 +29,29 @@ public class Note {
     @JoinColumn(name = "ticket_id", nullable = false)
     private Ticket ticket;
 
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = false)
+    private User author;
+
     // -----------------------------------
     // -------- GETTERS & SETTERS --------
     // -----------------------------------
+
+    public LocalDateTime getNote_date() {
+        return note_date;
+    }
+
+    public void setNote_date(LocalDateTime note_date) {
+        this.note_date = note_date;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
 
     public Integer getId() {
         return id;
