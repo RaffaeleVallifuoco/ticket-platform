@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.fixed-button {
+    position: fixed;
+    top: 60vh;
+    left: 76vw;
+}
+
+.fixed-image {
+    position: fixed;
+    top: 55vh;
+    left: 80vw;
+    height: 50vh;
+}
+
+.nav-bg {
+    background: #23074d;
+    background: linear-gradient(to right, #66007fb1, #0138ae, #13785d);
+}
+
+.fixed-logo {
+    position: fixed;
+    top: 50vh;
+    left: 5vw;
+}
+
+.separator {
+    border-left: 1px solid #ddd;
+    height: 100%;
+}
+
+footer{
+    background-color: #4b4b4b6f;
+    text-align: center;
+    margin-top: 200px;
+}
+
+.btn-margin{
+    margin-top: 300px
+}
+
+.foot_button{
+    background-color: #1146ae;
+}

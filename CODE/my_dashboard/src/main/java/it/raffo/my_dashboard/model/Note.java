@@ -1,5 +1,7 @@
 package it.raffo.my_dashboard.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,9 @@ public class Note {
 
     @Column(name = "name", length = 1500)
     private String name;
+
+    @Column(name = "date", nullable = false)
+    private LocalDateTime note_date;
 
     @ManyToOne
     @JoinColumn(name = "ticket_id", nullable = false)
@@ -42,6 +47,22 @@ public class Note {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDateTime getDate() {
+        return note_date;
+    }
+
+    public void setDate(LocalDateTime note_date) {
+        this.note_date = note_date;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
 }

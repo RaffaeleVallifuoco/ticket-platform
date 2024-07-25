@@ -2,6 +2,9 @@ package it.raffo.my_dashboard.model;
 
 import java.util.Set;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,12 +39,23 @@ public class User {
     // 0 = busy
     // 1 = available
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Ticket> ticket;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     // -----------------------------------
     // -------- GETTERS & SETTERS --------
     // -----------------------------------
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public Integer getId() {
         return id;
@@ -80,6 +95,14 @@ public class User {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<Ticket> getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(List<Ticket> ticket) {
+        this.ticket = ticket;
     }
 
 }
