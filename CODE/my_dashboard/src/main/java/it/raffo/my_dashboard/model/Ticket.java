@@ -16,6 +16,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "TICKET")
@@ -25,12 +27,15 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Campo Obbligatorio")
     @Column(name = "title", length = 100, nullable = false)
     private String title;
 
+    @NotBlank(message = "Campo Obbligatorio")
     @Column(name = "body", length = 800, nullable = false)
     private String body;
 
+    // @NotNull(message = "Campo Obbligatorio")
     @Column(name = "date", nullable = false)
     private LocalDateTime ticket_date;
 
@@ -41,10 +46,12 @@ public class Ticket {
         DA_FARE, IN_CORSO, COMPLETATO
     }
 
+    // @NotNull(message = "Campo Obbligatorio")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    // @NotNull(message = "Campo Obbligatorio")
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;

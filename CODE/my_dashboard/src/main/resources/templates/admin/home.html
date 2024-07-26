@@ -109,13 +109,46 @@
                                     <div class="" th:text="${ticket.user.username}">
                                     </div>
                                 </td>
+
+                                <!-- BUTTONS -->
+
                                 <td>
-                                    <div>
-                                        <a class="btn btn-secondary btn-primary opacity-75 p-3 icon-link icon-link-hover text-decoration-none  text-white" th:href="@{|/ticket/${ticket.id}|}">
-                                            <i class="bi bi-search"></i>
+                                    <div class="d-flex justify-content-evenly">
+                                        <a class="btn  btn-outline-secondary opacity-75 p-3 icon-link icon-link-hover text-decoration-none  text-white" th:href="@{|/ticket/${ticket.id}|}">
+                                            <i class="bi bi-search" style="color: darkcyan;"></i>
                                         </a>
-                                        
+                                        <a class="btn  btn-outline-warning opacity-75 p-3 icon-link icon-link-hover text-decoration-none  text-white"
+                                            th:href="@{|/ticket/${ticket.id}/edit|}">
+                                            <i class="bi bi-pencil-fill" style="color: rgb(209, 161, 2);" ></i>
+                                        </a>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:data-bs-target="'#deleteModal' + ${ticket.id}"
+                                            data-id="${ticket.id}">
+                                            <i class="bi bi-trash" style="color: rgb(175, 0, 0);"></i>
+                                        </button>
                                     </div>
+                                   
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" th:id="'deleteModal' + ${ticket.id}" data-bs-backdrop="static" data-bs-keyboard="false"
+                                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Attenzione</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Sei sicuro di voler eliminare questo ticket ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form th:action="@{'/ticket/{id}/delete'(id=${ticket.id})}" method="post">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                                        <button type="submit" class="btn btn-danger">Conferma ed elimina</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </td>
                     
                                 

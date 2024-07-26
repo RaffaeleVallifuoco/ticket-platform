@@ -55,8 +55,12 @@
                     <div class="card border-0">
                         <div class="card-body" th:each="ticket : ${ticket}">
                             <section class="d-flex justify-content-between fs-2">
-                                <span class="card-title" th:text="${ticket.title}"></span>
-                                <span class="card-title mx-3" th:text="${ticket.user.username}"></span>
+                                <p>
+                                    <span class="card-title" th:text="${ticket.title}"></span>
+                                    <span class="card-title px-5 " > - </span>
+                                    <span class="fs-6" th:text="${ticket.category.name}"></span>
+                                </p>
+                                <span class="card-title mx-4" th:text="${ticket.user.username}"></span>
                             </section>
                             <p class="card-subtitle fs-6" th:text="${ticket.ticket_date}"></p>
 
@@ -79,7 +83,7 @@
 
                 <!-- RIGHT COL -->
                 <div class="p-3 col-4 text-start">
-                    <h4 class="py-4">Note :</h4>
+                    <h4 class="py-4 text-warning">Note :</h4>
                     <div class="card border-0 opacity-50">
                         <div class="card-body" th:each="note: ${ticket.note}">
                             <ul>
