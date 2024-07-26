@@ -13,6 +13,6 @@ public interface TicketService {
 
     public List<Ticket> findByCategoryName(String categoryName);
 
-    public List<Ticket> findByStatus(Ticket.Status status);;
+    public List<Ticket> findByStatus(Ticket.Status status);
 
 }
