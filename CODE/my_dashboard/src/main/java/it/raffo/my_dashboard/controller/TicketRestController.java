@@ -4,7 +4,6 @@ import it.raffo.my_dashboard.response.Payload;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.tomcat.util.http.fileupload.MultipartStream.IllegalBoundaryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +18,6 @@ import it.raffo.my_dashboard.service.TicketService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @CrossOrigin
@@ -34,17 +29,17 @@ public class TicketRestController {
 
     @GetMapping("/index")
     public ResponseEntity<Payload<List<Ticket>>> getAll() {
-        List<Ticket> pizzaList = ticketService.findAll();
-        return ResponseEntity.ok(new Payload<List<Ticket>>(pizzaList, null, HttpStatus.OK));
+        List<Ticket> ticketList = ticketService.findAll();
+        return ResponseEntity.ok(new Payload<List<Ticket>>(ticketList, null, HttpStatus.OK));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Payload<Ticket>> getId(@PathVariable("id") Integer ticketId) {
 
-        Optional<Ticket> pizza = ticketService.findbyId(ticketId);
+        Optional<Ticket> ticket = ticketService.findbyId(ticketId);
 
-        if (pizza.isPresent()) {
-            return ResponseEntity.ok(new Payload<Ticket>(pizza.get(), null, HttpStatus.OK));
+        if (ticket.isPresent()) {
+            return ResponseEntity.ok(new Payload<Ticket>(ticket.get(), null, HttpStatus.OK));
 
         } else {
             return new ResponseEntity<Payload<Ticket>>(

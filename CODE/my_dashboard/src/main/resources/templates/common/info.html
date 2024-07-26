@@ -79,12 +79,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="py-3">
+                        <a class="btn  btn-outline-warning opacity-75 p-1 icon-link icon-link-hover text-decoration-none  text-white"
+                            th:href="@{|/ticket/${ticket.id}/edit|}">
+                            <span class="fs-6 fw-bold" style="color: rgb(255, 196, 3);">Modifica Ticket</span>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- RIGHT COL -->
                 <div class="p-3 col-4 text-start">
-                    <h4 class="py-4 text-warning">Note :</h4>
                     <div class="card border-0 opacity-50">
+                        <h4 class="py-4 text-warning">Note :</h4>
                         <div class="card-body" th:each="note: ${ticket.note}">
                             <ul>
                                 <li class="d-flex justify-content-between fs-6">
@@ -94,6 +100,12 @@
                                 <li th:text="${note.name}"></li>
                             </ul>
                         </div>
+                    </div>
+                    <div>
+                        <a class="btn  btn-outline-secondary opacity-75 p-1 icon-link icon-link-hover text-decoration-none  text-white"
+                            th:href="@{|/ticket/${ticket.id}/createNote|}">
+                            <span class="fs-6 fw-bold" style="color: rgb(133, 130, 130);">Aggiungi nota</span>
+                        </a>
                     </div>
                 </div>
             </div>
