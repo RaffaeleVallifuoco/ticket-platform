@@ -2,6 +2,9 @@ package it.raffo.my_dashboard.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -40,9 +43,11 @@ public class User {
     // 1 = available
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Ticket> ticket;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonBackReference
     private Set<Role> roles;
 
     // -----------------------------------
