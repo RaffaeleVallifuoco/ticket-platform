@@ -51,24 +51,36 @@
                 <!-- LEFT COL -->
 
                 <div class="col-8 text-start">
-                    <h1 class="p-4">Dettaglio ticket :</h1>
-                    <div class="card">
+                    <h1 class="py-4">Dettaglio ticket :</h1>
+                    <div class="card border-0">
                         <div class="card-body" th:each="ticket : ${ticket}">
                             <section class="d-flex justify-content-between fs-2">
                                 <span class="card-title" th:text="${ticket.title}"></span>
-                                <span class="card-title" th:text="${ticket.user.username}"></span>
+                                <span class="card-title mx-3" th:text="${ticket.user.username}"></span>
                             </section>
-                            <p class="card-subtitle fs-6"  th:text="${ticket.ticket_date}"></p >
+                            <p class="card-subtitle fs-6" th:text="${ticket.ticket_date}"></p>
 
-                            <p class="card-text fs-3 mb-2 text-body-secondary" th:text="${ticket.body}">Card subtitle/>
+                            <div class="row">
+                                <div class="col-10">
+                                    <p class="card-text d-flex fs-3 mb-2 text-body-secondary" th:text="${ticket.body}">
+                                        Card subtitle/>
+                                    </p>
+                                </div>
+                                <div class="col-2">
+                                    <div class="" th:each="stato : ${ticket.status}">
+                                        <button class="btn" th:classappend="${ticket.status}"
+                                            th:text="${stato}">Status:</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- RIGHT COL -->
-                 <div class="p-3 col-4 text-start">
+                <div class="p-3 col-4 text-start">
                     <h4 class="py-4">Note :</h4>
-                    <div class="card opacity-50">
+                    <div class="card border-0 opacity-50">
                         <div class="card-body" th:each="note: ${ticket.note}">
                             <ul>
                                 <li class="d-flex justify-content-between fs-6">
@@ -79,14 +91,14 @@
                             </ul>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
         </div>
 
     </main>
 
-    
+
 
 
     <!-- Bootstrap bundle -->

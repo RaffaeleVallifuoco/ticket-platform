@@ -7,6 +7,8 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,6 +33,13 @@ public class Ticket {
 
     @Column(name = "date", nullable = false)
     private LocalDateTime ticket_date;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    public enum Status {
+        DA_FARE, IN_CORSO, COMPLETATO
+    }
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -101,5 +110,13 @@ public class Ticket {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
