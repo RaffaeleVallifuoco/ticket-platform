@@ -11,4 +11,8 @@ public interface TicketService {
 
     public Optional<Ticket> findbyId(Integer id);
 
+    public List<Ticket> findByCategoryName(String categoryName);
+
+    public List<Ticket> findByStatus(Ticket.Status status);;
+
 }

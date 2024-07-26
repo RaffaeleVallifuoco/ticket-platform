@@ -30,18 +30,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class TicketRestController {
 
     @Autowired
-    private TicketService pizzaService;
+    private TicketService ticketService;
 
     @GetMapping("/index")
     public ResponseEntity<Payload<List<Ticket>>> getAll() {
-        List<Ticket> pizzaList = pizzaService.findAll();
+        List<Ticket> pizzaList = ticketService.findAll();
         return ResponseEntity.ok(new Payload<List<Ticket>>(pizzaList, null, HttpStatus.OK));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Payload<Ticket>> getId(@PathVariable("id") Integer ticketId) {
 
-        Optional<Ticket> pizza = pizzaService.findbyId(ticketId);
+        Optional<Ticket> pizza = ticketService.findbyId(ticketId);
 
         if (pizza.isPresent()) {
             return ResponseEntity.ok(new Payload<Ticket>(pizza.get(), null, HttpStatus.OK));
@@ -55,4 +55,25 @@ public class TicketRestController {
 
     }
 
+    @GetMapping("/category/{categoryName}")
+    public ResponseEntity<Payload<List<Ticket>>> getByCategoryName(@PathVariable("categoryName") String categoryName) {
+        List<Ticket> tickets = ticketService.findByCategoryName(categoryName);
+        if (tickets.isEmpty()) {
+            return new ResponseEntity<>(
+                    new Payload<>(null, "Nessun ticket trovato per la categoria " + categoryName, HttpStatus.NOT_FOUND),
+                    HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(new Payload<>(tickets, null, HttpStatus.OK));
+    }
+
+    @GetMapping("/status/{status}")
+    public ResponseEntity<Payload<List<Ticket>>> getByStatus(@PathVariable("status") Ticket.Status status) {
+        List<Ticket> tickets = ticketService.findByStatus(status);
+        if (tickets.isEmpty()) {
+            return new ResponseEntity<>(
+                    new Payload<>(null, "Nessun ticket trovato per lo status " + status, HttpStatus.NOT_FOUND),
+                    HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(new Payload<>(tickets, null, HttpStatus.OK));
+    }
 }

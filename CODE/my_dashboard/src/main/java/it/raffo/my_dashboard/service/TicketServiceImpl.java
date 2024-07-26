@@ -27,4 +27,14 @@ public class TicketServiceImpl implements TicketService {
         return ticketRepo.findById(id);
     }
 
+    @Override
+    public List<Ticket> findByCategoryName(String categoryName) {
+        return ticketRepo.findByCategoryName(categoryName);
+    }
+
+    @Override
+    public List<Ticket> findByStatus(Ticket.Status status) {
+        return ticketRepo.findByStatus(status);
+    }
+
 }
