@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import it.raffo.my_dashboard.model.Note;
 import it.raffo.my_dashboard.model.Ticket;
 import it.raffo.my_dashboard.model.User;
+import it.raffo.my_dashboard.repository.CategoryRepo;
 import it.raffo.my_dashboard.repository.NotesRepo;
 import it.raffo.my_dashboard.repository.TicketRepo;
+import it.raffo.my_dashboard.repository.UserRepo;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +35,12 @@ public class TicketController {
     @Autowired
     NotesRepo noteRepo;
 
+    @Autowired
+    UserRepo userRepo;
+
+    @Autowired
+    CategoryRepo categoryRepo;
+
     @GetMapping("/admin")
     public String index(Model model, @RequestParam(name = "title", required = false) String title,
             @RequestParam(name = "body", required = false) String body) {
@@ -53,6 +61,34 @@ public class TicketController {
         model.addAttribute("list", ticketList);
 
         return "/admin/home";
+    }
+
+    @GetMapping("/admin/create")
+    public String create(Model model) {
+
+        model.addAttribute("ticket", new Ticket());
+        model.addAttribute("users", userRepo.findAll());
+        model.addAttribute("category", categoryRepo.findAll());
+
+        return "/admin/create";
+    }
+
+    @PostMapping("/admin/create")
+    public String store(@Valid @ModelAttribute("ticket") Ticket ticketForm, BindingResult bindingresult, Model model) {
+        // TODO: process POST request
+
+        if (bindingresult.hasErrors()) {
+
+            return "/admin/create";
+        }
+
+        ticketForm.setTicket_date(LocalDateTime.now());
+        ticketForm.setStatus(Ticket.Status.DA_FARE);
+
+        ticketRepo.save(ticketForm);
+
+        return "redirect:/ticket/admin";
+
     }
 
     @GetMapping("/{id}")
