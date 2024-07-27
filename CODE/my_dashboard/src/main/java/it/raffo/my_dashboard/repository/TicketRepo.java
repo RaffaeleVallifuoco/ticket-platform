@@ -17,6 +17,10 @@ public interface TicketRepo extends JpaRepository<Ticket, Integer> {
 
     List<Ticket> findByUserUsername(String username);
 
+    List<Ticket> findByUserUsernameAndBodyContainingIgnoreCase(String username, String body);
+
+    List<Ticket> findByUserUsernameAndTitleContainingIgnoreCase(String username, String title);
+
     @Query("SELECT t FROM Ticket t WHERE t.category.name = :categoryName")
     List<Ticket> findByCategoryName(@Param("categoryName") String categoryName);
 

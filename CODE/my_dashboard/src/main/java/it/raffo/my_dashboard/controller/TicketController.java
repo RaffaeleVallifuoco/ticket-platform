@@ -80,10 +80,10 @@ public class TicketController {
             ticketList = ticketRepo.findByUserUsername(username);
 
         } else if (title == null) {
-            ticketList = ticketRepo.findByBodyContainingIgnoreCase(body);
+            ticketList = ticketRepo.findByUserUsernameAndBodyContainingIgnoreCase(username, body);
         } else {
 
-            ticketList = ticketRepo.findByTitleContainingIgnoreCase(title);
+            ticketList = ticketRepo.findByUserUsernameAndTitleContainingIgnoreCase(username, title);
         }
         model.addAttribute("list", ticketList);
 
