@@ -15,6 +15,8 @@ public interface TicketRepo extends JpaRepository<Ticket, Integer> {
 
     public List<Ticket> findByBodyContainingIgnoreCase(String body);
 
+    List<Ticket> findByUserUsername(String username);
+
     @Query("SELECT t FROM Ticket t WHERE t.category.name = :categoryName")
     List<Ticket> findByCategoryName(@Param("categoryName") String categoryName);
 
