@@ -1,8 +1,10 @@
 package it.raffo.my_dashboard.controller;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -109,7 +111,7 @@ public class TicketController {
             return "/admin/create";
         }
 
-        ticketForm.setTicket_date(LocalDateTime.now());
+        ticketForm.setTicket_date(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         ticketForm.setStatus(Ticket.Status.DA_FARE);
 
         ticketRepo.save(ticketForm);
@@ -176,9 +178,16 @@ public class TicketController {
             return "/common/createNote";
         }
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Optional<User> user = userRepo.findByUsername(username);
+        User loggedUser = user.get();
+
         Ticket ticket = ticketRepo.getReferenceById(id);
         note.setTicket(ticket);
-        note.setNote_date(LocalDateTime.now());
+        note.setNote_date(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        note.setAuthor(loggedUser);
         noteRepo.save(note);
 
         return "redirect:/ticket/" + id;
