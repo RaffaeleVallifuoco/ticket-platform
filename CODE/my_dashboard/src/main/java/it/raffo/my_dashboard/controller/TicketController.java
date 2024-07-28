@@ -98,6 +98,8 @@ public class TicketController {
         model.addAttribute("ticket", new Ticket());
         model.addAttribute("users", userRepo.findAll());
         model.addAttribute("category", categoryRepo.findAll());
+        List<User> availableUsers = userRepo.findByStatusTrue();
+        model.addAttribute("availableUsers", availableUsers);
 
         return "/admin/create";
     }
@@ -172,8 +174,9 @@ public class TicketController {
     }
 
     @PostMapping("/{id}/createNote")
-    public String createNote(@PathVariable("id") Integer id, @Valid Note note, BindingResult result, Model model) {
-        if (result.hasErrors()) {
+    public String createNote(@PathVariable("id") Integer id, @Valid Note note, BindingResult bindingResult,
+            Model model) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("ticketId", id);
             return "/common/createNote";
         }
