@@ -186,7 +186,8 @@ public class TicketController {
 
         Ticket ticket = ticketRepo.getReferenceById(id);
         note.setTicket(ticket);
-        note.setNote_date(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        note.setId(null);
+        note.setNoteDate(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         note.setAuthor(loggedUser);
         noteRepo.save(note);
 

@@ -27,7 +27,7 @@ public class Note {
     private String name;
 
     @Column(name = "date", nullable = false)
-    private LocalDateTime note_date;
+    private LocalDateTime noteDate;
 
     @ManyToOne
     @JoinColumn(name = "ticket_id", nullable = false)
@@ -43,20 +43,20 @@ public class Note {
     // -------- GETTERS & SETTERS --------
     // -----------------------------------
 
-    public LocalDateTime getNote_date() {
-        return note_date;
-    }
-
-    public void setNote_date(LocalDateTime note_date) {
-        this.note_date = note_date;
-    }
-
     public User getAuthor() {
         return author;
     }
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public LocalDateTime getNoteDate() {
+        return noteDate;
+    }
+
+    public void setNoteDate(LocalDateTime noteDate) {
+        this.noteDate = noteDate;
     }
 
     public Integer getId() {
@@ -73,14 +73,6 @@ public class Note {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LocalDateTime getDate() {
-        return note_date;
-    }
-
-    public void setDate(LocalDateTime note_date) {
-        this.note_date = note_date;
     }
 
     public Ticket getTicket() {
