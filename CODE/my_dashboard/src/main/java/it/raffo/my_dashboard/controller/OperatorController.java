@@ -1,6 +1,7 @@
 package it.raffo.my_dashboard.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.raffo.my_dashboard.model.User;
+import it.raffo.my_dashboard.repository.TicketRepo;
 import it.raffo.my_dashboard.repository.UserRepo;
 
 @Controller
@@ -23,6 +25,9 @@ public class OperatorController {
 
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    TicketRepo ticketRepo;
 
     @GetMapping("/edit")
     public String profile(Model model) {
@@ -44,22 +49,29 @@ public class OperatorController {
         if (user.isPresent()) {
             User existingUser = user.get();
 
-            // Aggiornamento dei dati dell'utente
+            List<String> ticketStatus = Arrays.asList("DA_FARE", "IN_CORSO");
+            int openTicket = ticketRepo.countByUserIdAndStatusIn(existingUser.getId(), ticketStatus);
+
+            if (userForm.isStatus() == false && openTicket > 0) {
+                model.addAttribute("errorMessage",
+                        "Impossibile impostare lo stato su inattivo finchè ci sono ticket in attesa.");
+                model.addAttribute("user", existingUser);
+                return "user/profile";
+            }
+
             existingUser.setName(userForm.getName());
             existingUser.setUsername(userForm.getUsername());
             existingUser.setStatus(userForm.isStatus());
 
-            // Controllo se ci sono errori di binding
             if (bindingResult.hasErrors()) {
                 model.addAttribute("user", existingUser);
                 return "user/profile";
             }
 
-            // Salvataggio delle modifiche
             userRepo.save(existingUser);
         }
 
         return "redirect:/ticket/user";
-    }
 
+    }
 }

@@ -24,6 +24,10 @@ public interface TicketRepo extends JpaRepository<Ticket, Integer> {
     @Query("SELECT t FROM Ticket t WHERE t.category.name = :categoryName")
     List<Ticket> findByCategoryName(@Param("categoryName") String categoryName);
 
+    // Metodo per contare i ticket "da fare" o "in corso" di un operatore usando
+    // metodo sql "IN" (incluso)
+    int countByUserIdAndStatusIn(Integer userId, List<String> status);
+
     List<Ticket> findByStatus(Ticket.Status status);
 
 }
