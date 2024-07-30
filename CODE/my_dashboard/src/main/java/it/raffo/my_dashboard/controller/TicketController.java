@@ -98,8 +98,8 @@ public class TicketController {
         model.addAttribute("ticket", new Ticket());
         model.addAttribute("users", userRepo.findAll());
         model.addAttribute("category", categoryRepo.findAll());
-        List<User> availableUsers = userRepo.findByStatusTrue();
-        model.addAttribute("availableUsers", availableUsers);
+        List<User> availableUser = userRepo.findByStatusTrue();
+        model.addAttribute("availableUser", availableUser);
 
         return "/admin/create";
     }
@@ -109,6 +109,9 @@ public class TicketController {
         // TODO: process POST request
 
         if (bindingresult.hasErrors()) {
+            model.addAttribute("category", categoryRepo.findAll());
+            List<User> availableUser = userRepo.findByStatusTrue();
+            model.addAttribute("availableUser", availableUser);
 
             return "/admin/create";
         }
@@ -143,6 +146,7 @@ public class TicketController {
             Model model) {
 
         if (bindingresult.hasErrors()) {
+            model.addAttribute("status", Ticket.Status.values());
 
             return "/common/edit";
         }

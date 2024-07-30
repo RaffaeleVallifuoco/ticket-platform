@@ -19,6 +19,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "USER")
@@ -28,12 +29,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Campo Obbligatorio")
     @Column(name = "name", length = 30, nullable = false)
     private String name;
 
+    @NotBlank(message = "Campo Obbligatorio")
     @Column(name = "username", length = 30, nullable = false, unique = true)
     private String username;
 
+    @NotBlank(message = "Campo Obbligatorio")
     @Column(name = "password", length = 30, nullable = false, unique = false)
     private String password;
 
@@ -41,6 +45,10 @@ public class User {
     private boolean status;
     // 0 = busy
     // 1 = available
+
+    @NotBlank(message = "Campo Obbligatorio")
+    @Column(name = "email", length = 60, nullable = false)
+    private String email;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -53,6 +61,14 @@ public class User {
     // -----------------------------------
     // -------- GETTERS & SETTERS --------
     // -----------------------------------
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Set<Role> getRoles() {
         return roles;

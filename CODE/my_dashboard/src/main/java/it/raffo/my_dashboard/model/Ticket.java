@@ -38,7 +38,6 @@ public class Ticket {
     @Column(name = "body", length = 800, nullable = false)
     private String body;
 
-    // @NotNull(message = "Campo Obbligatorio")
     @Column(name = "date", nullable = false)
     private LocalDateTime ticket_date;
 
@@ -49,13 +48,11 @@ public class Ticket {
         DA_FARE, IN_CORSO, COMPLETATO
     }
 
-    // @NotNull(message = "Campo Obbligatorio")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
 
-    // @NotNull(message = "Campo Obbligatorio")
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     @JsonBackReference
