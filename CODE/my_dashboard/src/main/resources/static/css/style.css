@@ -125,10 +125,5 @@ footer {
     font-size: 2rem;
     font-weight: bold;
     color: #ffffff;
-    position: absolute;
-    top: 11vh;
-    left: 82vw;
-    z-index: 1000;
-
 
 }

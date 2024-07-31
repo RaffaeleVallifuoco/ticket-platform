@@ -80,6 +80,21 @@
                 <!-- LEFT COL -->
 
                 <div class="col-lg-2 me-5">
+
+                    <!-- CLOCK -->
+                    
+                    <div class="col-12 mb-4 clock">
+                        <div class="card card-bg rounded-pill text-center fs-2 border-0 opacity-50">
+                            <div class="card-body">
+                                <div class="py-4" id="clock">
+                                    00:00:00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD -->
+
                     <div class="card rounded border-0 profile-card">
                         <div class="card-body card-bg">
                             <img class="d-flex justify-content-center mt-2" th:src="@{${user.photoPath}}"
@@ -144,18 +159,6 @@
                                 <div class="card-body">
                                     <div class="my-2 ">Operatori attivi</div>
                                     <div th:text="${available}" class="text-primary fs-3"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CLOCK -->
-
-                        <div class="col-2 clock">
-                            <div class="card card-bg rounded-pill text-center fs-2 border-0 opacity-50">
-                                <div class="card-body">
-                                    <div class="py-4" id="clock">
-                                        00:00:00
-                                    </div>
                                 </div>
                             </div>
                         </div>
