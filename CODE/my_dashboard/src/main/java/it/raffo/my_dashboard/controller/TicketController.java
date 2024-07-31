@@ -83,6 +83,9 @@ public class TicketController {
         Set<Role> roles = user.getRoles();
         model.addAttribute("roles", roles);
 
+        int countAvailable = userRepo.countByStatusTrue();
+        model.addAttribute("available", countAvailable);
+
         return "/admin/home_admin";
     }
 

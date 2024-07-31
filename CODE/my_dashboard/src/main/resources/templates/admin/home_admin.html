@@ -114,7 +114,7 @@
                     <!-- TOP ROW -->
 
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <div class="card card-bg rounded-pill text-center fs-5 border-0">
                                 <div class="card-body">
                                     <div class="my-2 ">Ticket inevasi</div>
@@ -122,7 +122,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <div class="card card-bg rounded-pill text-center fs-5 border-0">
                                 <div class="card-body">
                                     <div class="my-2 ">Ticket in lavorazione</div>
@@ -130,11 +130,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <div class="card card-bg rounded-pill text-center fs-5 border-0">
                                 <div class="card-body">
                                     <div class="my-2 ">Ticket completati</div>
                                     <div th:text="${completato}" class="text-success fs-3"></div>
+                                </div>
+                            </div>
+                        </div><div class="col-3">
+                            <div class="card profile-bg rounded-pill text-center fs-5 border-0">
+                                <div class="card-body">
+                                    <div class="my-2 ">Operatori attivi</div>
+                                    <div th:text="${available}" class="text-primary fs-3"></div>
                                 </div>
                             </div>
                         </div>
