@@ -54,11 +54,12 @@
                                 <button class="btn btn-outline-tertiary rounded" type="submit">Vai</button>
                         </li>
                         <li>
-                            <div class="fs-6 opacity-50 text-end">
-                                <span>
-                                    <i class="bi bi-x"></i>
-                                </span>
-                                <a th:href="@{/ticket/user}" class=" btn"> Rimuovi filtri</a>
+                            <div class="fs-6 opacity-50">
+                                <a class="btn btn-dark  p-2 icon-link icon-link-hover text-decoration-none  text-white rounded-pill"
+                                    th:href="@{/ticket/admin}">
+                                    <i class="bi bi-x" style="color: rgb(255, 255, 255);"></i>
+                                    <span class="fs-6"> rimuovi filtri</span>
+                                </a>
                             </div>
                         </li>
                     </ul>
@@ -116,7 +117,7 @@
                         <div class="col-4">
                             <div class="card card-bg rounded-pill text-center fs-5 border-0">
                                 <div class="card-body">
-                                    <div class="my-2 ">Ticket inevasi :</div>
+                                    <div class="my-2 ">Ticket inevasi</div>
                                     <div th:text="${dafare}" class="text-danger fs-3"></div>
                                 </div>
                             </div>
@@ -124,7 +125,7 @@
                         <div class="col-4">
                             <div class="card card-bg rounded-pill text-center fs-5 border-0">
                                 <div class="card-body">
-                                    <div class="my-2 ">Ticket in lavorazione :</div>
+                                    <div class="my-2 ">Ticket in lavorazione</div>
                                     <div th:text="${incorso}" class="text-warning fs-3"></div>
                                 </div>
                             </div>
@@ -132,8 +133,20 @@
                         <div class="col-4">
                             <div class="card card-bg rounded-pill text-center fs-5 border-0">
                                 <div class="card-body">
-                                    <div class="my-2 ">Ticket completati :</div>
+                                    <div class="my-2 ">Ticket completati</div>
                                     <div th:text="${completato}" class="text-success fs-3"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CLOCK -->
+                        
+                        <div class="col-2 clock">
+                            <div class="card card-bg rounded-pill text-center fs-2 border-0 opacity-75">
+                                <div class="card-body">
+                                    <div class="py-4" id="clock">
+                                        00:00:00
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +156,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <h1 class="my-5">LISTA TICKET :</h1>
+                            <h1 class="my-5">LISTA TICKET</h1>
                             <!-- TABLE -->
                             <div class="card border-0">
                                 <div class="card-body card-bg border-0">
