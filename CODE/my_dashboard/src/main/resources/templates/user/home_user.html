@@ -33,6 +33,10 @@
                     <img th:src="@{/img/myDashboardlogo.png}" alt="Logo" class="navbar-logo my-o py-0" width="30"
                         height="auto" />
                 </a>
+                <a class="btn icon-link icon-link-hover text-decoration-none  text-white  me-auto" th:href="@{/logout}">
+                    <i class="bi bi-box-arrow-right" style="color: rgb(255, 255, 255);"></i>
+                    <span class="fs-6 mt-2"> Logout</span>
+                </a>
 
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -83,7 +87,7 @@
                 <div class="col-lg-2 me-5">
 
                     <!-- CLOCK -->
-                    
+
                     <div class="col-12 mb-4 clock">
                         <div class="card card-bg rounded-pill text-center fs-2 border-0 opacity-50">
                             <div class="card-body">
@@ -93,16 +97,17 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- CARD -->
-                     
+
                     <div class="card rounded border-0 profile-card">
                         <div class="card-body card-bg">
                             <img class="d-flex justify-content-center mt-2" th:src="@{${user.photoPath}}"
                                 alt="Profile Photo" width="100%" height="auto">
                             <div>
                                 <ul class="fs-4 list-group border-0">
-                                    <li class="list-group-item border-0 card-reset" th:each="roles : ${roles}" th:text="${roles.role}">Role Name</li>
+                                    <li class="list-group-item border-0 card-reset" th:each="roles : ${roles}"
+                                        th:text="${roles.role}">Role Name</li>
                                 </ul>
                             </div>
                             <div th:text="${user.name}" class="fs-3 fw-bold pt-4"></div>
@@ -215,7 +220,7 @@
                                                         </a>
                                                         <!-- Button trigger modal -->
                                                         <button type="button"
-                                                            class="btn btn-purple icon-link rounded-pill icon-link-hover "
+                                                            class="btn btn-red icon-link rounded-pill icon-link-hover "
                                                             data-bs-toggle="modal"
                                                             th:data-bs-target="'#deleteModal' + ${ticket.id}"
                                                             data-id="${ticket.id}">
@@ -224,10 +229,10 @@
                                                         </button>
                                                     </div>
                                                     <!-- Modal -->
-                                                    <div class="modal fade" th:id="'deleteModal' + ${ticket.id}"
+                                                    <div class="modal fade border-0 rounded" th:id="'deleteModal' + ${ticket.id}"
                                                         data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
+                                                        <div class="modal-dialog border-0">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h1 class="modal-title fs-5"
@@ -237,17 +242,17 @@
                                                                         data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
                                                                 </div>
-                                                                <div class="modal-body">
+                                                                <div class="modal-body border-0">
                                                                     Sei sicuro di voler eliminare questo ticket ?
                                                                 </div>
-                                                                <div class="modal-footer">
+                                                                <div class="modal-footer border-0">
                                                                     <form
                                                                         th:action="@{'/ticket/{id}/delete'(id=${ticket.id})}"
                                                                         method="post">
-                                                                        <button type="button" class="btn btn-secondary"
+                                                                        <button type="button" class="btn btn-grey rounded"
                                                                             data-bs-dismiss="modal">Annulla</button>
                                                                         <button type="submit"
-                                                                            class="btn btn-danger">Conferma ed
+                                                                            class="btn btn-red rounded">Conferma ed
                                                                             elimina</button>
                                                                     </form>
                                                                 </div>
@@ -278,6 +283,18 @@
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'
         integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz'
         crossorigin='anonymous'></script>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();  // Inizializza subito l'orologio
+    </script>
 
 </body>
 

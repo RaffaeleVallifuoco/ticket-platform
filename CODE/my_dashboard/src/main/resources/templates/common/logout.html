@@ -44,12 +44,14 @@
     <main>
 
         <div class="container mt-4">
-            <div class="row text-center mt-5 justify-content-start">
-                <div class="card mt-5">
-                    <div class="card-header card-bg">
-                        <h1>Hai effettuato la disconnessione con successo !</h1>
-                        <p>Clicca qui per autenticarti nuovamente</p>
-                        <a th:href="@{/login}" class="btn btn-purple">Login</a>
+            <div class="row mt-5 justify-content-center">
+                <div class="col-6">
+                    <div class="card card-bg border-0 mt-5">
+                        <div class="card-header border-0 card-bg  my-4">
+                            <h1>Hai effettuato la disconnessione con successo !</h1>
+                            <p>Clicca qui per autenticarti nuovamente</p>
+                            <a th:href="@{/login}" class="btn btn-purple">Login</a>
+                        </div>
                     </div>
                 </div>
 

@@ -29,9 +29,14 @@
 
         <nav class="navbar nav-bg">
             <div class="container-fluid my-o py-0">
-                <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/ticket/admin}">
+                <a class="navbar-brand icon-link icon-link-hover my-0 py-0 mx-3" th:href="@{/ticket/admin}">
                     <img th:src="@{/img/myDashboardlogo.png}" alt="Logo" class="navbar-logo my-o py-0" width="30"
                         height="auto" />
+                </a>
+                <a class="btn icon-link icon-link-hover text-decoration-none  text-white  me-auto"
+                    th:href="@{/logout}">
+                    <i class="bi bi-box-arrow-right" style="color: rgb(255, 255, 255);"></i>
+                    <span class="fs-6 mt-2"> Logout</span>
                 </a>
 
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
@@ -235,7 +240,7 @@
                                                         </a>
                                                         <!-- Button trigger modal -->
                                                         <button type="button"
-                                                            class="btn btn-purple icon-link rounded-pill icon-link-hover "
+                                                            class="btn btn-red icon-link rounded-pill icon-link-hover "
                                                             data-bs-toggle="modal"
                                                             th:data-bs-target="'#deleteModal' + ${ticket.id}"
                                                             data-id="${ticket.id}">
@@ -264,10 +269,8 @@
                                                                     <form
                                                                         th:action="@{'/ticket/{id}/delete'(id=${ticket.id})}"
                                                                         method="post">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-bs-dismiss="modal">Annulla</button>
-                                                                        <button type="submit"
-                                                                            class="btn btn-danger">Conferma ed
+                                                                        <button type="button" class="btn btn-grey rounded" data-bs-dismiss="modal">Annulla</button>
+                                                                        <button type="submit" class="btn btn-red rounded">Conferma ed
                                                                             elimina</button>
                                                                     </form>
                                                                 </div>

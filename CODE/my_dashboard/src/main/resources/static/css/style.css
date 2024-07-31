@@ -49,6 +49,12 @@ body {
 
 }
 
+.btn-grey {
+    background: linear-gradient(to right, rgb(46, 46, 46), rgb(81, 81, 81));
+    border: none;
+
+}
+
 
 .btn-margin {
     margin-top: 270px
@@ -115,11 +121,6 @@ body {
 }
 
 
-footer {
-    background-color: #4b4b4b6f;
-    text-align: center;
-    margin-top: 200px;
-}
 
 .clock {
     font-size: 2rem;
