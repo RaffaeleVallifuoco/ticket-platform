@@ -30,7 +30,7 @@
         <nav class="navbar nav-bg">
             <div class="container-fluid my-o py-0">
                 <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
-                    <img th:src="@{/img/trasparent_dash_nav.png}" alt="Logo" class="navbar-logo my-o py-0" width="160"
+                    <img th:src="@{/img/myDashboardlogo.png}"alt="Logo" class="navbar-logo my-o py-0" width="30"
                         height="auto" />
                 </a>
 
@@ -49,22 +49,32 @@
             <div class="row text-center mt-5 justify-content-start">
 
                 <div class="col-6 text-start">
-                    <h1>Aggiungi Nota:</h1>
 
-                    <form th:action="@{/ticket/{id}/createNote(id=${ticketId})}" th:object="${note}" method="post">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nota</label>
-                            <textarea class="form-control" id="name" name="name" th:field="*{name}" rows="5"></textarea>
-                            <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
-                                <ul>
-                                    <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
-                                </ul>
-                            </div>
+                    <div class="card card-bg rounded fs-5 border-0">
+                        <div class="card-body">
+                            <h1 class="my-4">Aggiungi Nota:</h1>
+
+                            <form th:action="@{/ticket/{id}/createNote(id=${ticketId})}" th:object="${note}"
+                                method="post">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nota</label>
+                                    <textarea class="form-control custom-form-control" id="name" name="name" th:field="*{name}"
+                                        rows="5"></textarea>
+                                    <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-purple rounded mt-4 fs-5">Inserisci nota</button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary">Inserisci nota</button>
-                    </form>
+                    </div>
 
                 </div>
+            </div>
+        </div>
+
 
 
     </main>

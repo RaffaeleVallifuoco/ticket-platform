@@ -30,7 +30,7 @@
         <nav class="navbar nav-bg">
             <div class="container-fluid my-o py-0">
                 <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
-                    <img th:src="@{/img/trasparent_dash_nav.png}" alt="Logo" class="navbar-logo my-o py-0" width="160"
+                    <img th:src="@{/img/myDashboardlogo.png}" alt="Logo" class="navbar-logo my-o py-0" width="30"
                         height="auto" />
                 </a>
 
@@ -48,15 +48,17 @@
         <div class="container">
             <div class="row text-center mt-5 justify-content-start">
 
-                <div class="col-6 text-start">
-                    <h1>Apri un nuovo ticket :</h1>
+                <div class="col-4 text-start">
+                    <div class="card card-bg rounded fs-5 border-0">
+                        <div class="card-body">
+                    <h1 class="my-4">Apri un nuovo ticket</h1>
                     <form th:action="@{/ticket/admin/create}" th:object="${ticket}" method="post">
 
                         <!-- TITOLO -->
 
                         <div class="mb-3">
                             <label for="title" class="form-label">TITOLO</label>
-                            <input name="title" type="text" class="form-control" id="title"
+                            <input name="title" type="text" class="form-control custom-form-control" id="title"
                                 placeholder="Titolo del ticket" th:field="*{title}" th:errorClass="is-invalid">
                             <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
                                 <ul>
@@ -70,7 +72,7 @@
                         <div class="mb-3">
                             <label for="body" class="form-label">RICHIESTA</label>
                             <div class="mb-3">
-                                <textarea class="form-control " placeholder="Scrivi la tua richiesta" id="body"
+                                <textarea class="form-control custom-form-control" placeholder="Scrivi la tua richiesta" id="body"
                                     th:field="*{body}" rows="8" maxlength="800" th:errorClass="is-invalid"></textarea>
                             </div>
                             <div th:if="${#fields.hasErrors('body')}" class="invalid-feedback d-block">
@@ -84,8 +86,8 @@
                         <!-- OPERATORE -->
 
                     <div class="mb-3">
-                        <label for="availableUser" class="form-label">Assegna a  </label>
-                        <select id="availableUser" th:field="*{user}" class="form-select">
+                        <label for="availableUser" class="form-label">ASSEGNA A OPERATORE  </label>
+                        <select id="availableUser" th:field="*{user}" class="form-select custom-form-control">
                             <option th:each="user : ${availableUser}" th:value="${user.id}" th:text="${user.username}"></option>
                         </select>
                         
@@ -95,7 +97,7 @@
 
                         <div class="mb-3">
                             <label for="category" class="form-label">CATEGORIA</label>
-                            <select id="category" name="category" th:field="*{category.id}">
+                            <select class="form-select custom-form-control" id="category" name="category" th:field="*{category.id}">
                                 <option th:each="category : ${category}" th:value="${category.id}" th:text="${category.name}"></option>
                             </select>
                             
@@ -103,7 +105,7 @@
 
                         <!-- BUTTON -->
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-purple my-4 fs-5">Apri ticket</button>
                     </form>
                 </div>
             </div>

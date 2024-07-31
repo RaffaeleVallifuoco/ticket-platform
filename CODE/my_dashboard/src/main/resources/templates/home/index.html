@@ -28,13 +28,11 @@
     <header class="sticky-top">
 
         <nav class="navbar nav-bg">
-            <div class="container-fluid my-o py-0">
+            <div class="container-fluid my-o py-0 nav-content">
                 <a class="navbar-brand my-0 py-0 mx-3" th:href="@{/home}">
-                    <img th:src="@{/img/trasparent_dash_nav.png}" alt="Logo" class="navbar-logo my-o py-0" width="160"
+                    <img th:src="@{/img/myDashboardlogo.png}" alt="Logo" class="navbar-logo my-o py-0" width="30"
                         height="auto" />
                 </a>
-
-
             </div>
         </nav>
     </header>
@@ -45,14 +43,14 @@
      --------------------- -->
     <main>
 
-        <div class="container">
+        <div class="container mt-4">
             <div class="row text-center mt-5 justify-content-start">
 
                 <!-- LEFT COL -->
 
                 <div class="col-5 mt-5">
                     <div class="mt-5">
-                        <img th:src="@{/img/white_dash_logo.png}" alt="Logo" class="navbar-logo opacity-50" width="400"
+                        <img th:src="@{/img/myDashLogoText.png}" alt="Logo" class="navbar-logo opacity-100" width="350"
                             height="400" />
                     </div>
                 </div>
@@ -64,16 +62,18 @@
 
                 <!-- RIGHT COL -->
 
-                <div class="col-6 mt-2">
-                    <h1 class="fs-2">Welcome to myDASHBOARD ™</h1>
-                    <h2 class="fs-6 mt-3">Please login</h2>
+                <div class="col-6 mt-5">
 
-                    <div class="btn-margin">
-                        <a th:href="@{|/ticket/admin|}" type="button"
-                            class="btn btn-primary p-3 rounded-pill mx-3 fs-4">Accedi come ADMIN
-                        </a>
-                        <a th:href="@{|/ticket/user|}" type="button" class="btn btn-success p-3 rounded-pill mx-3 fs-4">Accedi come USER
-                        </a>
+                    <div class="card border-0 mt-5 rounded-pill shadow-lg">
+                        <div class="card-body card-bg ">
+                            <h1 class="fs-2">Welcome to myDASHBOARD ™</h1>
+                            <div class="btn-margin">
+                                <a th:href="@{|/ticket/admin|}" type="butto" class="btn btn-blue p-3 rounded-pill mx-3 fs-4">Area riservata ADMIN
+                                </a>
+                                <a th:href="@{|/ticket/user|}" type="button" class="btn btn-purple p-3 rounded-pill mx-3 fs-4">Area riservata USER
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,21 +82,6 @@
 
     </main>
 
-    <footer class="opacity-75">
-        <div class="container d-flex justify-content-center py-5">
-            <a href="https://github.com/RaffaeleVallifuoco" target="_blank"
-                class="btn btn-outline-primary rounded p-2 mb-5">GitHub
-                profile
-            </a>
-
-        </div>
-
-        <!-- Copyright -->
-        <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            Copyright: © 2024 - RaffoV
-        </div>
-        <!-- Copyright -->
-    </footer>
 
 
     <!-- Bootstrap bundle -->

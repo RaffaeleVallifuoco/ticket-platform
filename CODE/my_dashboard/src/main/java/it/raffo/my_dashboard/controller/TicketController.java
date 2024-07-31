@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.raffo.my_dashboard.model.Note;
+import it.raffo.my_dashboard.model.Role;
 import it.raffo.my_dashboard.model.Ticket;
 import it.raffo.my_dashboard.model.User;
 import it.raffo.my_dashboard.repository.CategoryRepo;
@@ -65,6 +67,22 @@ public class TicketController {
 
         model.addAttribute("list", ticketList);
 
+        int countInCorso = ticketRepo.countByStatus(Ticket.Status.IN_CORSO);
+        int countDaFare = ticketRepo.countByStatus(Ticket.Status.DA_FARE);
+        int countCompletato = ticketRepo.countByStatus(Ticket.Status.COMPLETATO);
+
+        model.addAttribute("dafare", countDaFare);
+        model.addAttribute("incorso", countInCorso);
+        model.addAttribute("completato", countCompletato);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Optional<User> currentUser = userRepo.findByUsername(username);
+        User user = currentUser.get();
+        model.addAttribute("user", user);
+        Set<Role> roles = user.getRoles();
+        model.addAttribute("roles", roles);
+
         return "/admin/home_admin";
     }
 
@@ -88,6 +106,20 @@ public class TicketController {
             ticketList = ticketRepo.findByUserUsernameAndTitleContainingIgnoreCase(username, title);
         }
         model.addAttribute("list", ticketList);
+
+        int countInCorso = ticketRepo.countByUserUsernameAndStatus(username, Ticket.Status.IN_CORSO);
+        int countDaFare = ticketRepo.countByUserUsernameAndStatus(username, Ticket.Status.DA_FARE);
+        int countCompletato = ticketRepo.countByUserUsernameAndStatus(username, Ticket.Status.COMPLETATO);
+
+        model.addAttribute("dafare", countDaFare);
+        model.addAttribute("incorso", countInCorso);
+        model.addAttribute("completato", countCompletato);
+
+        Optional<User> currentUser = userRepo.findByUsername(username);
+        User user = currentUser.get();
+        model.addAttribute("user", user);
+        Set<Role> roles = user.getRoles();
+        model.addAttribute("roles", roles);
 
         return "/user/home_user";
     }

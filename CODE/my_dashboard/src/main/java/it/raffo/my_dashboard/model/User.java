@@ -41,6 +41,17 @@ public class User {
     @Column(name = "password", length = 30, nullable = false, unique = false)
     private String password;
 
+    @Column(name = "photo")
+    private String photoPath;
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
     @Column(name = "status", columnDefinition = "TINYINT(1)", nullable = false)
     private boolean status;
     // 0 = busy

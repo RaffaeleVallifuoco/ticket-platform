@@ -28,6 +28,10 @@ public interface TicketRepo extends JpaRepository<Ticket, Integer> {
     // metodo sql "IN" (incluso)
     int countByUserIdAndStatusIn(Integer userId, List<String> status);
 
+    int countByUserUsernameAndStatus(String username, Ticket.Status status);
+
     List<Ticket> findByStatus(Ticket.Status status);
+
+    int countByStatus(Ticket.Status status);
 
 }

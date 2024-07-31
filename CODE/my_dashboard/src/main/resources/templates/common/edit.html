@@ -48,59 +48,67 @@
         <div class="container">
             <div class="row text-center mt-5 justify-content-start">
 
-                <div class="col-6 text-start">
-                    <h1>MODIFICA TICKET :</h1>
-                    <form th:action="@{/ticket/{id}/edit(id=${ticket.id})}" th:object="${ticket}" method="post">
+                <div class="col-4 text-start">
 
-                        <!-- TITOLO -->
+                    <div class="card card-bg rounded fs-5 border-0">
+                        <div class="card-body">
+                            <h1 class="my-4">MODIFICA TICKET</h1>
+                            
+                            <form th:action="@{/ticket/{id}/edit(id=${ticket.id})}" th:object="${ticket}" method="post">
 
-                        <div class="mb-3">
-                            <label for="title" class="form-label">TITOLO</label>
-                            <input name="title" type="text" class="form-control" id="title"
-                                placeholder="Titolo del ticket" th:field="*{title}" th:errorClass="is-invalid">
-                            <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
-                                <ul>
-                                    <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
-                                </ul>
-                            </div>
+                                <!-- TITOLO -->
+
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">TITOLO</label>
+                                    <input name="title" type="text" class="form-control custom-form-control" id="title"
+                                        placeholder="Titolo del ticket" th:field="*{title}" th:errorClass="is-invalid">
+                                    <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- RICHIESTA -->
+
+                                <div class="mb-3">
+                                    <label for="body" class="form-label">RICHIESTA</label>
+                                    <div class="mb-3">
+                                        <textarea class="form-control custom-form-control" placeholder="Scrivi la tua richiesta" id="body"
+                                            th:field="*{body}" rows="8" maxlength="800"
+                                            th:errorClass="is-invalid"></textarea>
+                                    </div>
+                                    <div th:if="${#fields.hasErrors('body')}" class="invalid-feedback">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('body')}" th:text="${err}"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- STATO -->
+
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">STATUS TICKET </label>
+                                    <select class="form-select custom-form-control p-2 mb-3" id="status" name="status" th:field="*{status}" >
+                                        <option th:each="stato : ${status}" th:value="${stato}" th:text="${stato}">Stato
+                                        </option>
+                                    </select>
+                                    <div th:if="${#fields.hasErrors('status')}" class="invalid-feedback">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('status')}" th:text="${err}"></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <button type="submit" class="btn btn-purple rounded p-2 my-3 fs-5">Salva e torna al dettaglio</button>
+                            </form>
                         </div>
-
-                        <!-- RICHIESTA -->
-
-                        <div class="mb-3">
-                            <label for="body" class="form-label">RICHIESTA</label>
-                            <div class="mb-3">
-                                <textarea class="form-control " placeholder="Scrivi la tua richiesta" id="body"
-                                    th:field="*{body}" rows="8" maxlength="800" th:errorClass="is-invalid"></textarea>
-                            </div>
-                            <div th:if="${#fields.hasErrors('body')}" class="invalid-feedback">
-                                <ul>
-                                    <li th:each="err : ${#fields.errors('body')}" th:text="${err}"></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- STATO -->
-
-                        <div class="mb-3">
-                            <label for="status" class="form-label">STATUS TICKET </label>
-                            <select id="status" name="status" th:field="*{status}">
-                                <option th:each="stato : ${status}" th:value="${stato}" th:text="${stato}">Stato
-                                </option>
-                            </select>
-                            <div th:if="${#fields.hasErrors('status')}" class="invalid-feedback">
-                                <ul>
-                                    <li th:each="err : ${#fields.errors('status')}" th:text="${err}"></li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+
 
 
     </main>

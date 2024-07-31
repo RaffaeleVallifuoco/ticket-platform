@@ -2,30 +2,73 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-color: black;
+    background-color:  #131b2d;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-
-.fixed-button {
-    position: fixed;
-    top: 60vh;
-    left: 76vw;
+.card-reset {
+    background-color: transparent;
 }
 
-.fixed-image {
-    position: fixed;
-    top: 55vh;
-    left: 80vw;
-    height: 50vh;
+.card-bg {
+    background-color: #1f2940;
 }
 
 .nav-bg {
-    background: #23074d;
-    background: linear-gradient(to right, #66007fb1, #0138ae, #13785d);
+    
+    background: linear-gradient(to left, rgba(113, 0, 139, 0.5), rgba(1, 56, 174, 0.5), rgb(19, 27, 45));
+
 }
+
+
+
+.btn-blue {
+    background: linear-gradient(to right, rgb(24, 1, 103), rgb(33, 93, 224));
+    border: none;
+
+}
+.btn-purple {
+    background: linear-gradient(to right, rgb(155, 1, 169), rgb(95, 0, 78));
+    border: none;
+
+}
+
+.btn-orange {
+    background: linear-gradient(to right, rgb(195, 166, 0), rgb(95, 65, 0));
+    border: none;
+
+}
+
+
+.btn-red {
+    background: linear-gradient(to right, rgb(233, 1, 1), rgb(95, 0, 0));
+        border: none;
+
+}
+
+
+.btn-margin {
+    margin-top: 270px
+}
+
+.profile-bg {
+    background-color: #2e364c
+    
+}
+
+.custom-form-control {
+    background-color: rgba(0, 0, 0, 0.20);
+    border: none;
+   
+    color: #ffffff;
+  
+}
+.btn-profile {
+    margin-top: 200px;
+}
+
 
 .fixed-logo {
     position: fixed;
@@ -38,9 +81,25 @@ body {
     height: 100%;
 }
 
-.btn-margin {
-    margin-top: 300px
+
+.no-color-table thead th,
+.no-color-table tbody td {
+    background-color: transparent;
+    color: inherit;
 }
+
+.no-color-table {
+    background-color: transparent;
+    border: none;
+}
+
+.no-color-table thead th {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6)
+    /* Solo bordatura inferiore per intestazione */
+}
+
+
+
 
 .DA_FARE {
     background-color: red;
@@ -61,9 +120,4 @@ footer {
     margin-top: 200px;
 }
 
-
-
-.foot_button {
-    background-color: #1146ae;
-}
 
