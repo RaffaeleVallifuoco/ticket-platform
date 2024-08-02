@@ -13,48 +13,29 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfiguration {
 
-    // @Bean
-    // SecurityFilterChain filterChain(HttpSecurity http)
-    // throws Exception {
-    // http.authorizeHttpRequests()
-    // .requestMatchers("/home").permitAll()
-    // .requestMatchers("/ticket/admin/**").hasAuthority("ADMIN")
-    // .requestMatchers("/ticket/user/**").hasAuthority("OPERATOR")
-    // .requestMatchers("/operator/**").hasAnyAuthority("OPERATOR", "ADMIN")
-    // .requestMatchers("/ticket/{id}/**").hasAnyAuthority("ADMIN", "OPERATOR")
-    // .requestMatchers("/css/**", "/js/**", "/webjars/**", "img/**")
-    // .permitAll()
-    // .and()
-    // .formLogin()
-    // .and()
-    // .logout()
-    // .and().exceptionHandling();
-
-    // return http.build();
-    // }
-
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.disable())
                 .authorizeHttpRequests(request -> request
-                        // queste sono rotte accessibili a tutti
+                        // rotte accessibili a tutti
                         .requestMatchers("/login", "/home", "/resources/**", "/logout", "/api/**", "img/**", "/css/**")
                         .permitAll()
                         .requestMatchers("/ticket/admin/**").hasAuthority("ADMIN")
-                        // .requestMatchers("/ticket/user/**").hasAuthority("OPERATOR")
-                        // .requestMatchers("/operator/**").hasAnyAuthority("OPERATOR", "ADMIN")
-                        // .requestMatchers("/ticket/{id}/**").hasAnyAuthority("ADMIN", "OPERATOR")
-                        // questo vuol dire che TUTTE le altre devono essere sotto autenticazione
+                        .requestMatchers("/ticket/user/**").hasAuthority("OPERATOR")
+                        .requestMatchers("/operator/**").hasAnyAuthority("OPERATOR", "ADMIN")
+                        .requestMatchers("/ticket/{id}/**").hasAnyAuthority("ADMIN", "OPERATOR")
                         .anyRequest().authenticated())
                 .formLogin(login -> login.loginPage("/login") // Pagina di login personalizzata
                         .loginProcessingUrl("/authentication") // URL di elaborazione del login
-                        .defaultSuccessUrl("/home") // Reindirizza dopo il successo del login
+                        .defaultSuccessUrl("/home")
                         .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/logout-success")
-                        .permitAll()); // Imposta il logout di default
+                        .permitAll())
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/403")); // Configura la pagina di errore per accesso negato
 
         return http.build();
     }

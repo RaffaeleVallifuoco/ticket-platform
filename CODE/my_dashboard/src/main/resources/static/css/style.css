@@ -12,6 +12,17 @@ body {
     background-color: transparent;
 }
 
+.card-body-scrollable {
+    max-height: 382px;
+    overflow-y: auto;
+}
+
+
+.card-scrollable {
+    max-width: 100%;
+    overflow-y: auto;
+}
+
 .card-bg {
     background-color: #1f2940;
 }
@@ -25,19 +36,19 @@ body {
 
 
 .btn-blue {
-    background: linear-gradient(to right, rgb(24, 1, 103), rgb(33, 93, 224));
+    background: linear-gradient(to right, rgb(24, 1, 103), rgb(21, 75, 193));
     border: none;
 
 }
 
 .btn-purple {
-    background: linear-gradient(to right, rgb(155, 1, 169), rgb(95, 0, 78));
+    background: linear-gradient(to right, rgb(135, 1, 148), rgb(79, 0, 65));
     border: none;
 
 }
 
 .btn-orange {
-    background: linear-gradient(to right, rgb(195, 166, 0), rgb(95, 65, 0));
+    background: linear-gradient(to right, rgb(238, 202, 0), rgb(110, 98, 0));
     border: none;
 
 }
@@ -128,3 +139,4 @@ body {
     color: #ffffff;
 
 }
+

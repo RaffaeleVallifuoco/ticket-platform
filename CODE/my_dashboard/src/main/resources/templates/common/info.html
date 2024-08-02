@@ -33,7 +33,7 @@
                     <img th:src="@{/img/myDashboardlogo.png}" alt="Logo" class="navbar-logo my-o py-0" width="30"
                         height="auto" />
                 </a>
-                <a class="btn icon-link icon-link-hover text-decoration-none  text-white  me-auto" th:href="@{/logout}">
+                <a class="btn icon-link icon-link-hover text-decoration-none  text-white mx-4 ms-auto" th:href="@{/logout}">
                     <i class="bi bi-box-arrow-right" style="color: rgb(255, 255, 255);"></i>
                     <span class="fs-6 mt-2"> Logout</span>
                 </a>
@@ -79,17 +79,17 @@
                                         </div>
                                         <div class="col-2">
                                             <div class="" th:each="stato : ${ticket.status}">
-                                                <button class="btn rounded-pill p-3" th:classappend="${ticket.status}"
-                                                    th:text="${stato}">Status:</button>
+                                                <a class="btn rounded-pill p-3" th:classappend="${ticket.status}"
+                                                    th:text="${stato}" th:href="@{|/ticket/${ticket.id}/edit|}"></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="py-3">
-                                <a class="btn  btn-orange rounded-pill  opacity-75 p-2 icon-link icon-link-hover text-decoration-none  text-white"
+                                <a class="btn rounded-pill  opacity-75 p-2 icon-link icon-link-hover text-decoration-none"
                                     th:href="@{|/ticket/${ticket.id}/edit|}">
-                                    <span class="fs-6 fw-bold" style="color: rgb(255, 255, 255);">Modifica Ticket</span>
+                                    <span class="fs-6 fw-bold" style="color: rgb(16, 108, 255);">Modifica Ticket</span>
                                 </a>
                             </div>
                         </div>
@@ -98,11 +98,11 @@
 
                 <!-- RIGHT COL -->
                 <div class="p-3 col-4 text-start">
-                    <div class="card rounded border-0 profile-card">
-                        <div class="card-body card-bg">
+                    <div class="card rounded border-0 profile-card ">
+                        <div class="card-body card-body-scrollable card-bg">
                             <div class="card border-0 card-reset opacity-75">
                                 <h4 class="py-4 fs-3 text-warning">Note :</h4>
-                                <div class="card-body card-reset" th:each="note: ${ticket.note}">
+                                <div class="card-body card-reset" th:each="note: ${noteByDate}">
                                     <ul>
                                         <li class="d-flex justify-content-between fs-6">
                                             <span th:text="${note.author.username}"></span>
@@ -112,12 +112,29 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div>
-                                <a class="btn  border-0 opacity-75  icon-link icon-link-hover text-decoration-none  text-white"
-                                    th:href="@{|/ticket/${ticket.id}/createNote|}">
-                                    <span class="fs-5 fw-bold" style="color: rgb(193, 164, 0);">Aggiungi nota</span>
-                                </a>
+                        </div>
+                    </div>
+                    <!-- CREATE  -->
+                    <div class="card card-bg rounded mt-4 fs-5 border-0">
+                        <div class="card-body">
+                            <div class="card-header caed-reset my-3">
+                                <i class="bi bi-plus-lg fs-4 mt-2 fw-bold" style="color: rgb(255, 255, 255);"></i>
+                                <h1 class="fs-4 d-inline">Aggiungi Nota:</h1>
                             </div>
+                    
+                            <form th:action="@{/ticket/{id}(id=${ticketId})}" th:object="${note}" method="post">
+                                <div class="mb-3 fs-5">
+                                    <label for="name" class="form-label fs-6">Nota</label>
+                                    <textarea class="form-control custom-form-control" id="name" name="name" th:field="*{name}"
+                                        rows="5"></textarea>
+                                    <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn  rounded mt-4 fs-6" style="color: rgb(16, 108, 255);">Inserisci nota</button>
+                            </form>
                         </div>
                     </div>
                 </div>

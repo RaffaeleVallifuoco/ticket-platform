@@ -72,7 +72,8 @@ public class OperatorController {
             userRepo.save(existingUser);
         }
 
-        return "redirect:/ticket/user";
+        return "redirect:/home";
 
     }
+
 }

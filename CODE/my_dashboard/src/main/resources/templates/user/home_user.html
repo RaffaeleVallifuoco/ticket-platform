@@ -33,7 +33,7 @@
                     <img th:src="@{/img/myDashboardlogo.png}" alt="Logo" class="navbar-logo my-o py-0" width="30"
                         height="auto" />
                 </a>
-                <a class="btn icon-link icon-link-hover text-decoration-none  text-white  me-auto" th:href="@{/logout}">
+                <a class="btn icon-link icon-link-hover text-decoration-none  text-white mx-4 ms-auto" th:href="@{/logout}">
                     <i class="bi bi-box-arrow-right" style="color: rgb(255, 255, 255);"></i>
                     <span class="fs-6 mt-2"> Logout</span>
                 </a>
@@ -62,7 +62,7 @@
                                 <a class="btn btn-dark  p-2 icon-link icon-link-hover text-decoration-none  text-white rounded-pill"
                                     th:href="@{/ticket/admin}">
                                     <i class="bi bi-x" style="color: rgb(255, 255, 255);"></i>
-                                    <span class="fs-6"> rimuovi filtri</span>
+                                    <span class="fs-6 mt-1"> rimuovi filtri</span>
                                 </a>
                             </div>
                         </li>
@@ -117,9 +117,9 @@
                             </div>
                             <div class="pt-5 fs-6" th:text="${user.email}"></div>
                             <div>
-                                <a class="btn btn-orange btn-profile p-3 icon-link icon-link-hover text-decoration-none  text-white rounded-pill me-3"
+                                <a class="btn btn-purple fs-6 btn-profile p-2 icon-link icon-link-hover text-decoration-none  text-white rounded-pill "
                                     th:href="@{/operator/edit}">
-                                    <i class="bi bi-pencil-fill" style="color: rgb(255, 255, 255);"></i>
+                                    <i class="bi bi-search" style="color: rgb(255, 255, 255);"></i>
                                     <span class="fs-6"> Modifica il profilo</span>
                                 </a>
                             </div>
@@ -167,7 +167,7 @@
                             <h1 class="my-5">LISTA TICKET</h1>
                             <!-- TABLE -->
                             <div class="card border-0">
-                                <div class="card-body card-bg border-0">
+                                <div class="card-body card-scrollable card-bg border-0">
                                     <table class="table no-color-table table-striped table-hover border-dark my-5">
                                         <!-- THEAD -->
                                         <thead class="">

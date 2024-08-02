@@ -1,8 +1,10 @@
 package it.raffo.my_dashboard.controller;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -57,12 +59,15 @@ public class TicketController {
         if (title == null && body == null) {
 
             ticketList = ticketRepo.findAll();
+            ticketList.sort(Comparator.comparing(Ticket::getTicket_date).reversed());
 
         } else if (title == null) {
             ticketList = ticketRepo.findByBodyContainingIgnoreCase(body);
+            ticketList.sort(Comparator.comparing(Ticket::getTicket_date).reversed());
         } else {
 
             ticketList = ticketRepo.findByTitleContainingIgnoreCase(title);
+            ticketList.sort(Comparator.comparing(Ticket::getTicket_date).reversed());
         }
 
         model.addAttribute("list", ticketList);
@@ -101,12 +106,15 @@ public class TicketController {
         if (title == null && body == null) {
 
             ticketList = ticketRepo.findByUserUsername(username);
+            ticketList.sort(Comparator.comparing(Ticket::getTicket_date).reversed());
 
         } else if (title == null) {
             ticketList = ticketRepo.findByUserUsernameAndBodyContainingIgnoreCase(username, body);
+            ticketList.sort(Comparator.comparing(Ticket::getTicket_date).reversed());
         } else {
 
             ticketList = ticketRepo.findByUserUsernameAndTitleContainingIgnoreCase(username, title);
+            ticketList.sort(Comparator.comparing(Ticket::getTicket_date).reversed());
         }
         model.addAttribute("list", ticketList);
 
@@ -162,8 +170,16 @@ public class TicketController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Integer id, Model model) {
+        Ticket ticket = ticketRepo.getReferenceById(id);
 
-        model.addAttribute("ticket", ticketRepo.getReferenceById(id));
+        List<Note> getNoteByDateDISC = ticket.getNote();
+        getNoteByDateDISC.sort(Comparator.comparing(Note::getNoteDate).reversed());
+
+        model.addAttribute("ticket", ticket);
+        model.addAttribute("noteByDate", getNoteByDateDISC);
+
+        model.addAttribute("note", new Note());
+        model.addAttribute("ticketId", id);
 
         return "/common/info";
     }
@@ -205,19 +221,45 @@ public class TicketController {
         return "redirect:/ticket/admin";
     }
 
-    @GetMapping("/{id}/createNote")
-    public String getCreateNote(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("note", new Note());
-        model.addAttribute("ticketId", id);
-        return "/common/createNote";
-    }
+    // @GetMapping("/{id}/createNote")
+    // public String getCreateNote(@PathVariable("id") Integer id, Model model) {
+    // model.addAttribute("note", new Note());
+    // model.addAttribute("ticketId", id);
+    // return "/common/createNote";
+    // }
 
-    @PostMapping("/{id}/createNote")
+    // @PostMapping("/{id}/createNote")
+    // public String createNote(@PathVariable("id") Integer id, @Valid Note note,
+    // BindingResult bindingResult,
+    // Model model) {
+    // if (bindingResult.hasErrors()) {
+    // model.addAttribute("ticketId", id);
+    // return "/common/createNote";
+    // }
+
+    // Authentication authentication =
+    // SecurityContextHolder.getContext().getAuthentication();
+    // String username = authentication.getName();
+
+    // Optional<User> user = userRepo.findByUsername(username);
+    // User loggedUser = user.get();
+
+    // Ticket ticket = ticketRepo.getReferenceById(id);
+    // note.setTicket(ticket);
+    // note.setId(null);
+    // note.setNoteDate(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+    // note.setAuthor(loggedUser);
+    // noteRepo.save(note);
+
+    // return "redirect:/ticket/" + id;
+    // }
+
+    @PostMapping("/{id}")
     public String createNote(@PathVariable("id") Integer id, @Valid Note note, BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("ticketId", id);
-            return "/common/createNote";
+            return "/ticket/" + id;
         }
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
