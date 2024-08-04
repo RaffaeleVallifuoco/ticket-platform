@@ -262,9 +262,11 @@
                                                                         data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
                                                                 </div>
-                                                                <div class="modal-body">
+                                                                <div class="modal-body p-0">
                                                                     Sei sicuro di voler eliminare questo ticket ?
+                                                                    <img class="ms-auto" th:src="@{/img/raffacciouloNoBg.png}" width="30%" height="auto"></img>
                                                                 </div>
+                                                                
                                                                 <div class="modal-footer">
                                                                     <form
                                                                         th:action="@{'/ticket/{id}/delete'(id=${ticket.id})}"

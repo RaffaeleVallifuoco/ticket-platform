@@ -114,7 +114,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- CREATE  -->
+
+                    <!-- CREATE NOTE -->
+
                     <div class="card card-bg rounded mt-4 fs-5 border-0">
                         <div class="card-body">
                             <div class="card-header caed-reset my-3">
@@ -126,7 +128,7 @@
                                 <div class="mb-3 fs-5">
                                     <label for="name" class="form-label fs-6">Nota</label>
                                     <textarea class="form-control custom-form-control" id="name" name="name" th:field="*{name}"
-                                        rows="5"></textarea>
+                                        rows="5" th:errorClass="is-invalid"></textarea>
                                     <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>

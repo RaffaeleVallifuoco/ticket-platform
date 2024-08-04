@@ -258,8 +258,13 @@ public class TicketController {
     public String createNote(@PathVariable("id") Integer id, @Valid Note note, BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
+            Ticket ticket = ticketRepo.findById(id).get();
+            List<Note> getNoteByDateDISC = ticket.getNote();
+            getNoteByDateDISC.sort(Comparator.comparing(Note::getNoteDate).reversed());
             model.addAttribute("ticketId", id);
-            return "/ticket/" + id;
+            model.addAttribute("noteByDate", getNoteByDateDISC);
+            model.addAttribute("ticket", ticket);
+            return "/common/info";
         }
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
