@@ -14,8 +14,6 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     // Metodo per trovare gli operatori disponibili
     List<User> findByStatusTrue();
 
-    Optional<User> findById(Integer Id);
-
     int countByStatusTrue();
 
 }

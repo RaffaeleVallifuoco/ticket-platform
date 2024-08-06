@@ -1,6 +1,5 @@
 package it.raffo.my_dashboard.controller;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
