@@ -82,7 +82,7 @@
                                             th:field="*{body}" rows="8" maxlength="800"
                                             th:errorClass="is-invalid"></textarea>
                                     </div>
-                                    <div th:if="${#fields.hasErrors('body')}" class="invalid-feedback">
+                                    <div th:if="${#fields.hasErrors('body')}" class="invalid-feedback d-block">
                                         <ul>
                                             <li th:each="err : ${#fields.errors('body')}" th:text="${err}"></li>
                                         </ul>
