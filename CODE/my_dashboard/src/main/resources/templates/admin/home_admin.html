@@ -252,9 +252,9 @@
                                                     <div class="modal fade" th:id="'deleteModal' + ${ticket.id}"
                                                         data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                                         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
+                                                        <div class="modal-dialog card-bg">
                                                             <div class="modal-content">
-                                                                <div class="modal-header">
+                                                                <div class="modal-header card-bg">
                                                                     <h1 class="modal-title fs-5"
                                                                         id="staticBackdropLabel">
                                                                         Attenzione</h1>
@@ -262,12 +262,12 @@
                                                                         data-bs-dismiss="modal"
                                                                         aria-label="Close"></button>
                                                                 </div>
-                                                                <div class="modal-body p-0">
+                                                                <div class="modal-body card-bg p-0">
                                                                     Sei sicuro di voler eliminare questo ticket ?
                                                                     <img class="ms-auto" th:src="@{/img/raffacciouloNoBg.png}" width="30%" height="auto"></img>
                                                                 </div>
                                                                 
-                                                                <div class="modal-footer">
+                                                                <div class="modal-footer card-bg">
                                                                     <form
                                                                         th:action="@{'/ticket/{id}/delete'(id=${ticket.id})}"
                                                                         method="post">
